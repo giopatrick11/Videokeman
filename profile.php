@@ -82,6 +82,20 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
         .song-item a:hover {
             text-decoration: underline;
         }
+
+        .backup-btn {
+            padding: 6px 12px;
+            background-color: #246b45;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px; /* Add some space above the button */
+        }
+
+        .backup-btn:hover {
+            background-color: #1d5636;
+        }
     </style>
 </head>
 <body>
@@ -89,15 +103,15 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
         <div class="main-container">
             <div class="top-bar">
                 <div class="logo">
-                <img src="images/vklogo-removebg-preview.png" alt="Videokeman Logo">
+                    <img src="images/vklogo-removebg-preview.png" alt="Videokeman Logo">
                 </div>
                 <div class="search-login-container">
-                <div class="search-bar">
-    <form action="search.php" method="GET">
-        <input type="text" name="query" placeholder="Search" required>
-        <button type="submit">Search</button>
-    </form>
-</div>
+                    <div class="search-bar">
+                        <form action="search.php" method="GET">
+                            <input type="text" name="query" placeholder="Search" required>
+                            <button type="submit">Search</button>
+                        </form>
+                    </div>
                     <a href="logout.php"><button class="login-btn">Logout</button></a>
                 </div>
             </div>
@@ -137,6 +151,13 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true) {
                         }
                         ?>
                     </div>
+
+                    <!-- Backup Database Button for Admin -->
+                    <?php if ($user['username'] === 'admin'): ?>
+                        <form action="backup_database.php" method="post">
+                            <button type="submit" class="backup-btn">Backup Database</button>
+                        </form>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
